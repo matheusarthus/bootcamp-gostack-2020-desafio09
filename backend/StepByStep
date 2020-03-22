@@ -526,3 +526,7 @@ yarn add youch
 
       const orders = await Order.findAll({
       where: { name: { [Op.like]: `%${recipient}%` } },
+
+--Instalar o Cors para permitir acesso à API
+  ->yarn add cors
+  ->Importar o cors para dentro do 'App.js'

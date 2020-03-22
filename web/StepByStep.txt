@@ -1,0 +1,81 @@
+--INICIANDO APLICAÇÃO
+  ->yarn create react-app web
+    ->Limpar o projeto
+
+--CONFIGURANDO ESLINT E PRETTIER
+  ->Criar '.editorconfig'
+  ->yarn add eslint -D
+    ->yarn eslint --init
+      ->Excluir 'packge-lock.json' e executar comando 'yarn'
+      ->Criar arquivo '.eslintrc'
+      ->Instalar plugins:
+          ->yarn add prettier eslint-config-prettier eslint-plugin-prettier
+            babel-eslint -D
+      ->Criar arquivo '.prettierrc"
+
+--Configurando rotas
+  ->yarn add react-router-dom
+    ->Criar pasta 'pages' em 'src'
+    ->Criar pasta 'routes' em 'src'
+      ->'index.js'
+    ->Criar pasta 'services' em 'src'
+      ->yarn add history
+        ->'history.js'
+    ->Criar rotas privadas:
+      ->yarn add prop-types
+      ->Criar arquivo 'Route.js' em 'routes'
+
+
+--Criando as páginas da aplicação
+  ->Lista de páginas: {
+    -SigIn
+    -OrdersList
+    -DeliverymenList
+    -RecipientsList
+    -ProblemsList
+    -DeliverymenForm
+    -RecipientsForm
+    -OrdersForm
+    -DeliverymenEdit
+    -RecipientsEdit
+    -OrdersEdit
+  }
+
+  ->Criar as pastas referentes a cada página da aplicação:
+    ->Criar pasta 'SigIn'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'OrdersList'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'DeliverymenList'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'RecipientsList'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'ProblemsList'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'DeliverymenForm'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'RecipientsForm'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'OrdersForm'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'DeliverymenEdit'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'RecipientsEdit'
+      ->'index.js'
+      ->'stryles.js'
+    ->Criar pasta 'OrdersEdit'
+      ->'index.js'
+      ->'stryles.js'
+
+--Criando as rotas
+  ->Importar rotas no 'rotes/index.js'
+  ->Importar Routes e history no 'App.js'
