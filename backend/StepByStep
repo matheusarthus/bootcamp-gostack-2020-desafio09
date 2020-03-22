@@ -490,3 +490,26 @@ yarn add youch
 
 --Configurar arquivo 'app.js'
   ->Criar método 'exceptionHandler()'
+
+
+--CONFIGURANDO BACKEND PARA DESAFIO_09
+
+--Permita que a listagem de encomendas seja filtrada pelo nome do produto,
+--recebendo um Query Parameter ?product_name=Piano
+  -> const { Op } = require('sequelize');
+
+  -> Acrescentar nova claúsula na consulta:
+    ->const { product_name } = req.query;
+
+      const orders = await Order.findAll({
+      where: { product: { [Op.like]: `%${product_name}%` } },
+
+--Permita que a listagem de entregadores seja filtrada pelo nome do entregador,
+--recebendo um Query Parameter ?deliveryman=John
+  -> const { Op } = require('sequelize');
+
+  -> Acrescentar nova claúsula na consulta:
+    ->const { deliveryman } = req.query;
+
+      const orders = await Order.findAll({
+      where: { name: { [Op.like]: `%${deliveryman}%` } },
