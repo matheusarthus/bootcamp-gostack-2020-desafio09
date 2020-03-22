@@ -79,3 +79,32 @@
 --Criando as rotas
   ->Importar rotas no 'rotes/index.js'
   ->Importar Routes e history no 'App.js'
+
+--Instalando ReactotoTron
+  ->yarn add reactotron-react-js
+    ->Criart pasta 'config' em 'src'
+      ->Criar arquivo 'ReactotronConfig.js'
+        ->Importar arquivo em 'App.js'
+
+--Criand layouts de páginas
+  ->yarn add styled-components
+  ->Criar pasta '_layout' em 'pages'
+    ->
+    ->Criar pasta 'default'
+      ->'index.js' e 'styles.js'
+    ->Criar pasta 'auth'
+      ->'index.js' e 'styles.js'
+
+--Criando estilos globais
+  ->Criar pasta 'styles' em 'src'
+    ->'Global.js'
+    ->Importar 'GLobal.js' em 'App.js'
+
+--Utilizando Root Import
+  ->yarn add customize-cra react-app-rewired -D
+    ->Criar arquivo 'config-overrides.js' na raiz
+  ->yarn add babel-plugin-root-import -D
+  ->Alterar 'scripts' no 'package.json'
+  ->Configrar '.eslintrc'
+  ->yarn add eslint-import-resolver-babel-plugin-root-import -D
+  ->Criar arquivo 'jsconfig.json' na raiz
