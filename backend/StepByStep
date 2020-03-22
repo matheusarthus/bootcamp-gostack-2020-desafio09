@@ -513,3 +513,16 @@ yarn add youch
 
       const orders = await Order.findAll({
       where: { name: { [Op.like]: `%${deliveryman}%` } },
+
+--Permita que a listagem de destinatários seja filtrada pelo nome do
+--destinatário, recebendo um Query Parameter ?recipient=Ludwig
+  ->Criar nova rota:
+    ->routes.get('/recipients', RecipientController.index);
+
+  -> const { Op } = require('sequelize');
+
+  -> Acrescentar nova claúsula na consulta:
+    ->const { recipient } = req.query;
+
+      const orders = await Order.findAll({
+      where: { name: { [Op.like]: `%${recipient}%` } },
