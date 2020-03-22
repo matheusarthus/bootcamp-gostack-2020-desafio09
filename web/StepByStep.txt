@@ -108,3 +108,17 @@
   ->Configrar '.eslintrc'
   ->yarn add eslint-import-resolver-babel-plugin-root-import -D
   ->Criar arquivo 'jsconfig.json' na raiz
+
+--CRIANDO ESTILIZAÇÕES
+
+--Estilização da Autenticação
+  ->Criar pasta 'assets' em 'src'
+    ->Baixar imagens de logo
+    ->Configurar 'SigIn/index.js'
+    ->Configurar '_layouts/auth/styles.js'
+      ->yarn add polished
+
+--Utilizar Unform
+  ->yarn add @rocketseat/unform
+    ->Alterar 'SigIn/index.js'
+      ->Importar { Form, Input } from '@rocketseat/unform';
