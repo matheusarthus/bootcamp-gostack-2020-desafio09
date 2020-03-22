@@ -64,7 +64,7 @@ export const Content = styled.div`
     }
 
     button {
-      margin: 15px 0 0;
+      margin: 15px 0 10px;
       height: 45px;
       background: #7d40e7;
       font-weight: bold;
