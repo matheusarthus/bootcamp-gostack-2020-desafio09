@@ -122,3 +122,11 @@
   ->yarn add @rocketseat/unform
     ->Alterar 'SigIn/index.js'
       ->Importar { Form, Input } from '@rocketseat/unform';
+
+--Criar validações de dados no login
+  ->yarn add yup
+    ->importar * as Yup from 'yup' no 'SigIn/index.js'
+      ->Estilizar as mensagens de erro
+
+--CONFIGURAR REDUX E REDUX SAGA
+

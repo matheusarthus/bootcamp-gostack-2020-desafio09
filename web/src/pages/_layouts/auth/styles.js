@@ -35,6 +35,12 @@ export const Content = styled.div`
         margin-bottom: 10px;
       }
 
+      > h1 {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
         border: 1px solid #dddddd;
@@ -43,15 +49,22 @@ export const Content = styled.div`
         width: 100%;
         height: 45px;
         padding: 0 15px;
-        margin: 0 0 20px;
+        margin: 0 0 5px;
 
         &::placeholder {
         }
       }
     }
 
+    span {
+      color: #7d40e7;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
     button {
-      margin: 5px 0 0;
+      margin: 15px 0 0;
       height: 45px;
       background: #7d40e7;
       font-weight: bold;
