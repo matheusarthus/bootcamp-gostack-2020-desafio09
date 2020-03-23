@@ -166,3 +166,10 @@
     ->Configurar 'store/index.js'
     ->Configurar 'App.js'
     ->Configurar 'Route.js'
+
+--Configurando loading da autenticação
+  ->Configurar o modulo 'auth'
+    ->'reducer.js'
+    ->'sagas.js'
+  ->Configurar o component 'SigIn'
+    ->'index.js'
