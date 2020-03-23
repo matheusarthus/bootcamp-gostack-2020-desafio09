@@ -173,3 +173,9 @@
     ->'sagas.js'
   ->Configurar o component 'SigIn'
     ->'index.js'
+
+-Colocando mensagens de erro com o Toast
+  ->yarn add react-toastify
+    ->Importar { ToastContainer } em 'App.js'
+    ->Configurar 'styles/Global.js'
+    ->Importar { Toast } em 'auth/sagas.js'
