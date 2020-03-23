@@ -143,3 +143,26 @@
           ->'sagas.js'
         ->Configurar 'ReactototronConfig.js'
         ->Configurar 'App.js'
+
+--Configurando Autenticação
+  ->Criar actions de autenticação
+  ->Configurar 'sagas.js'
+    ->yarn add axios
+      ->Criar 'api.js' em 'services'
+  ->Configurar 'SigIn/index.js'
+  ->Configurar 'reducer.js'
+  ->Configurar 'Route.js'
+
+--Armazenando infos do perfil logado
+  ->Criar novo módulo 'user'
+    ->'actions.js'
+    ->'reducer.js'
+    ->'sagas.js'
+      ->Configurar 'rootReducer.js' e 'rootSaga.js'
+
+--Persistindo autenticação
+  ->yarn add redux-persist
+    ->Criar arquivo 'persistReducer.js' em 'store'
+    ->Configurar 'store/index.js'
+    ->Configurar 'App.js'
+    ->Configurar 'Route.js'
