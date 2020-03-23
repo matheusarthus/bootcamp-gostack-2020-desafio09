@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 import Route from './Route';
 
 import SigIn from '../pages/SigIn';
-import OrdersList from '../pages/OrderList';
+import OrdersList from '../pages/OrdersList';
 import DeliverymenList from '../pages/DeliverymenList';
 import RecipientsList from '../pages/RecipientsList';
 import ProblemsList from '../pages/ProblemsList';
@@ -24,7 +24,7 @@ export default function Routes() {
       <Route path="/problemslist" component={ProblemsList} isPrivate />
       <Route path="/deliverymenform" component={DeliverymenForm} isPrivate />
       <Route path="/recipientsform" component={RecipientsForm} isPrivate />
-      <Route path="/OrdersForm" component={OrdersForm} isPrivate />
+      <Route path="/ordersform" component={OrdersForm} isPrivate />
       <Route path="/deliverymenedit" component={DeliverymenEdit} isPrivate />
       <Route path="/recipientsedit" component={RecipientsEdit} isPrivate />
       <Route path="/ordersEdit" component={OrdersEdit} isPrivate />

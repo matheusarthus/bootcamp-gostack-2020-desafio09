@@ -183,3 +183,12 @@
 --Requisições autenticadas
   ->Configurar 'auth/sagas.js'
     ->api.defaults.headers.Authorization
+
+--Criação do Header
+  ->Criar pasta 'components' em 'src'
+    ->Criar pasta 'Header'
+      ->'index.js'
+      ->'styles.js'
+
+--Criação da tela de listagem de entregas
+
