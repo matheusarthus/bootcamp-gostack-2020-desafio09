@@ -179,3 +179,7 @@
     ->Importar { ToastContainer } em 'App.js'
     ->Configurar 'styles/Global.js'
     ->Importar { Toast } em 'auth/sagas.js'
+
+--Requisições autenticadas
+  ->Configurar 'auth/sagas.js'
+    ->api.defaults.headers.Authorization
