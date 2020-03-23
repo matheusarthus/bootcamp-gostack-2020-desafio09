@@ -1,3 +1,201 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 50px auto;
+
+  display: flex;
+  flex-direction: column;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+
+    strong {
+      font-size: 24px;
+    }
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+`;
+
+export const SubHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 30px;
+
+  form {
+    display: flex;
+    align-items: center;
+    width: 237px;
+    height: 36px;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+
+    input {
+      margin-left: 10px;
+      width: 100%;
+      border: none;
+
+      &::placeholder {
+        font-size: 14px;
+        color: #999999;
+      }
+    }
+  }
+
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 142px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 15px;
+    background: #7d40e7;
+    transition: background 0.3s;
+
+    span {
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background: ${darken(0.03, '#7d40e7')};
+    }
+  }
+`;
+
+export const OrderTable = styled.table`
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  border-collapse: separate !important;
+  border-spacing: 0 15px !important;
+
+  th,
+  td {
+    color: #666666;
+    font-size: 16px;
+    text-align: left;
+    padding: 15px;
+  }
+
+  td:nth-child(3) {
+    div {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  td {
+    padding: 15px;
+    background: #fff;
+  }
+
+  td:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  td:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+`;
+
+export const Badge = styled.button`
+  margin-top: 5px;
+  margin-left: 15px;
+  background: none;
+  border: 0;
+  position: relative;
+`;
+
+export const MoreOptions = styled.div`
+  display: inline-block;
+  position: absolute;
+  background: #fff;
+  width: 150px;
+  margin-top: 5px;
+  border: 1;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #000000;
+  padding: 10px;
+  left: calc(100% - 328px);
+
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -7px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(0, 0, 0);
+  }
+`;
+
+export const Options = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #ffff;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+    color: #999999;
+    transition: background 0.3s;
+
+    &:hover {
+      color: ${darken(0.07, '#999999')};
+    }
+
+    &:nth-child(1) {
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eeeeee;
+    }
+    &:nth-child(2) {
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    & + button {
+      margin-top: 5px;
+    }
+
+    span {
+      margin-left: 10px;
+    }
+  }
+`;

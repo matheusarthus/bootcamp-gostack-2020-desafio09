@@ -191,4 +191,4 @@
       ->'styles.js'
 
 --Criação da tela de listagem de entregas
-
+  ->yarn add react-icons
