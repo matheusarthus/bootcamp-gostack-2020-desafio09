@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import Order from '../models/Order';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
+import File from '../models/File';
 
 import SolicitationMail from '../jobs/SolicitationMail';
 import UpdatingMail from '../jobs/UpdatingMail';
@@ -21,14 +22,31 @@ class OrderController {
       attributes: ['id', 'product', 'start_date', 'end_date', 'canceled_at'],
       include: [
         {
+          model: File,
+          as: 'signature',
+          attirbutes: ['id', 'path', 'url'],
+        },
+        {
           model: Recipient,
           as: 'recipient',
-          attributes: ['name'],
+          attributes: [
+            'name',
+            'cidade',
+            'estado',
+            'logradouro',
+            'numero',
+            'cep',
+          ],
         },
         {
           model: Deliveryman,
           as: 'deliveryman',
           attributes: ['name', 'email'],
+          include: {
+            model: File,
+            as: 'avatar',
+            attributes: ['id', 'path', 'url'],
+          },
         },
       ],
     });

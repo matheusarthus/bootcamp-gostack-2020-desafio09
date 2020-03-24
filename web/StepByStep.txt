@@ -192,3 +192,6 @@
 
 --Criação da tela de listagem de entregas
   ->yarn add react-icons
+
+--Criação da tela de listagem de entregadores
+

@@ -17,6 +17,10 @@ export const Container = styled.div`
       font-size: 24px;
     }
   }
+
+  ul {
+    margin-top: 10px;
+  }
 `;
 
 export const SubHeader = styled.div`
@@ -85,11 +89,20 @@ export const OrderTable = styled.table`
     padding: 15px;
   }
 
-  td:nth-child(2) {
-    img {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
+  td:nth-child(3) {
+    div {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+
+      span {
+        margin-left: 5px;
+      }
     }
   }
 
@@ -119,12 +132,13 @@ export const MoreOptions = styled.div`
   background: #fff;
   width: 150px;
   margin-top: 5px;
+  border: 1;
   border-style: solid;
   border-radius: 5px;
   border-width: 1px;
   border-color: #000000;
   padding: 10px;
-  right: calc(100% - 98px);
+  right: calc(100% - 100px);
 
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
@@ -164,6 +178,11 @@ export const Options = styled.div`
     }
 
     &:nth-child(1) {
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eeeeee;
+    }
+    &:nth-child(2) {
       margin-bottom: 5px;
       padding-bottom: 10px;
       border-bottom: 1px solid #eeeeee;

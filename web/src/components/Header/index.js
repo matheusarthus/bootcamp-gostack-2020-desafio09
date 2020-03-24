@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import logo from '~/assets/fastfeet-logo.svg';
@@ -6,6 +7,8 @@ import logo from '~/assets/fastfeet-logo.svg';
 import { Container, Content } from './styles';
 
 export default function Header() {
+  const userName = useSelector((state) => state.user.profile.name);
+
   return (
     <Container>
       <Content>
@@ -18,7 +21,7 @@ export default function Header() {
         </nav>
 
         <aside>
-          <h1>Admin FastFeet</h1>
+          <h1>{userName}</h1>
           <button type="button">sair do sistema</button>
         </aside>
       </Content>
