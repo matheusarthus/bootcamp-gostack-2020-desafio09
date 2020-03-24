@@ -1,9 +1,16 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdAdd, MdSearch } from 'react-icons/md';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
 import { Delivered, Pending, Started, Canceled } from '~/components/Status';
 import ActionMenu from '~/components/ActionMenu';
+
+import { removeDetails } from '~/store/modules/auth/actions';
+
+import white from '~/assets/white.png';
 
 import {
   Container,
@@ -19,6 +26,10 @@ export default function OrdersList() {
   const [orders, setOrders] = useState([]);
   const [search, setSearch] = useState(['']);
 
+  const details = useSelector((state) => state.auth.details);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     async function loadOrders() {
       const response = await api.get('/orders', {
@@ -32,6 +43,15 @@ export default function OrdersList() {
 
     loadOrders();
   }, [search]);
+
+  function toggleVisibleFadeBoard() {
+    dispatch(removeDetails());
+  }
+
+  const formattedDate = (fdate) =>
+    fdate == null
+      ? ''
+      : format(parseISO(fdate), "dd '/' MMM '/' yyyy", { locale: pt });
 
   return (
     <>
@@ -104,31 +124,54 @@ export default function OrdersList() {
                   ) : null}
                 </td>
                 <td>
-                  <ActionMenu />
+                  <ActionMenu order={order} />
                 </td>
               </tr>
             ))}
           </tbody>
         </OrderTable>
       </Container>
-      <FadeBoard visible>
+      <FadeBoard onClick={toggleVisibleFadeBoard} visible={details}>
         <DetailsBoard>
           <div>
             <strong>Informações da encomenda</strong>
-            <span>Rua 8 JA, 449</span>
-            <span>Rio Claro - São Paulo</span>
-            <span>CEP: 13504-100</span>
+            <span>
+              {details ? details.recipient.logradouro : ''},{' '}
+              {details ? details.recipient.numero : ''}
+            </span>
+            <span>
+              {details ? details.recipient.cidade : ''}
+              {' - '}
+              {details ? details.recipient.estado : ''}
+            </span>
+            <span>CEP: {details ? details.recipient.cep : ''}</span>
           </div>
           <div>
             <strong>Datas</strong>
-            <span>Retirada: 12/03/2020</span>
-            <span>Entrega: 24/03/2020</span>
+            {details && details.canceled_at ? (
+              <span>ENCOMENDA CANCELADA</span>
+            ) : (
+              <>
+                <span>
+                  Retirada: {details ? formattedDate(details.start_date) : ''}
+                </span>
+                <span>
+                  Entrega: {details ? formattedDate(details.end_date) : ''}
+                </span>
+              </>
+            )}
           </div>
           <div>
             <strong>Assinatura do destinatário</strong>
             <img
-              src="https://api.adorable.io/avatars/50/abott@adorable.png"
-              alt="empty espace"
+              alt="signature"
+              src={
+                details
+                  ? details.signature
+                    ? details.signature.url
+                    : white
+                  : ''
+              }
             />
           </div>
         </DetailsBoard>

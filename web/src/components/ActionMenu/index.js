@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
@@ -10,11 +11,19 @@ import {
 
 import { Container, MoreOptions } from './styles';
 
-export default function ActionMenu() {
+import { showDetails } from '~/store/modules/auth/actions';
+
+export default function ActionMenu({ order }) {
   const [visible, setVisible] = useState(false);
+
+  const dispatch = useDispatch();
 
   function handleToggleVisible() {
     setVisible(!visible);
+  }
+
+  function handleDetails() {
+    dispatch(showDetails(order));
   }
 
   return (
@@ -25,7 +34,7 @@ export default function ActionMenu() {
 
       <MoreOptions visible={visible}>
         <div>
-          <button type="button">
+          <button type="button" onClick={handleDetails}>
             <MdVisibility size={16} color="#8E58E8" />
             <span>Visualizar</span>
           </button>

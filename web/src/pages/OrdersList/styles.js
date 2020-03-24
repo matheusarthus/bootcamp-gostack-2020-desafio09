@@ -124,10 +124,11 @@ export const OrderTable = styled.table`
 
 export const FadeBoard = styled.div`
   position: absolute;
+  display: flex;
   top: 0;
   z-index: 1;
-  width: 100vw;
-  height: 100vw;
+  width: 100vmax;
+  height: 100vmax;
   background: rgba(0, 0, 0, 0.7);
   display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
   justify-content: center;
@@ -135,8 +136,8 @@ export const FadeBoard = styled.div`
 
 export const DetailsBoard = styled.div`
   margin-top: 300px;
-  width: 450px;
-  height: 350px;
+  width: 500px;
+  height: 400px;
   background: #fff;
   border-radius: 5px;
   display: flex;
@@ -162,6 +163,11 @@ export const DetailsBoard = styled.div`
       font-size: 16px;
       margin-bottom: 5px;
       color: #666;
+    }
+
+    img {
+      background: #fff;
+      max-height: 100px;
     }
   }
 `;

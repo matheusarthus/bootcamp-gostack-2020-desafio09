@@ -17,3 +17,16 @@ export function signFailure() {
     type: '@auth/SIGN_FAILURE',
   };
 }
+
+export function showDetails(order) {
+  return {
+    type: '@auth/SHOW_DETAILS',
+    payload: { order },
+  };
+}
+
+export function removeDetails() {
+  return {
+    type: '@auth/REMOVE_DETAILS',
+  };
+}
