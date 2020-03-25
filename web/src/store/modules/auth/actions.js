@@ -18,9 +18,30 @@ export function signFailure() {
   };
 }
 
-export function showDetails(order) {
+export function refreshOrdersRequest(search) {
   return {
-    type: '@auth/SHOW_DETAILS',
+    type: '@auth/REFRESH_ORDERS_REQUEST',
+    payload: { search },
+  };
+}
+
+export function refreshOrdersSuccess(orders) {
+  return {
+    type: '@auth/REFRESH_ORDERS_SUCCESS',
+    payload: { orders },
+  };
+}
+
+export function deleteOrderRequest(id) {
+  return {
+    type: '@auth/DELETE_ORDER_REQUEST',
+    payload: { id },
+  };
+}
+
+export function createDetails(order) {
+  return {
+    type: '@auth/CREATE_DETAILS',
     payload: { order },
   };
 }

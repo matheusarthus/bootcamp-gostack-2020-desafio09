@@ -4,7 +4,12 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import { signInSuccess, signFailure } from './actions';
+import {
+  signInSuccess,
+  signFailure,
+  refreshOrdersRequest,
+  refreshOrdersSuccess,
+} from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -28,6 +33,36 @@ export function* signIn({ payload }) {
   }
 }
 
+export function* refreshOrders({ payload }) {
+  try {
+    const { search } = payload;
+
+    const response = yield call(api.get, '/orders', {
+      params: {
+        product_name: search,
+      },
+    });
+
+    yield put(refreshOrdersSuccess(response.data));
+  } catch (err) {
+    toast.error('Não há encomendas cadastradas.');
+  }
+}
+
+export function* deleteOrder({ payload }) {
+  try {
+    const { id } = payload;
+
+    const response = yield call(api.delete, `/orders/${id}`);
+
+    console.tron.log(response);
+
+    yield put(refreshOrdersRequest(''));
+  } catch (err) {
+    toast.error('Não há encomendas cadastradas.');
+  }
+}
+
 export function setToken({ payload }) {
   if (!payload) return;
 
@@ -39,6 +74,8 @@ export function setToken({ payload }) {
 }
 
 export default all([
+  takeLatest('@auth/DELETE_ORDER_REQUEST', deleteOrder),
+  takeLatest('@auth/REFRESH_ORDERS_REQUEST', refreshOrders),
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
 ]);

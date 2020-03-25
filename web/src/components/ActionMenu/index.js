@@ -1,6 +1,6 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import {
   MdMoreHoriz,
@@ -9,12 +9,18 @@ import {
   MdDeleteForever,
 } from 'react-icons/md';
 
+import history from '~/services/history';
+
 import { Container, MoreOptions } from './styles';
 
-import { showDetails } from '~/store/modules/auth/actions';
+import {
+  createDetails,
+  deleteOrderRequest,
+} from '~/store/modules/auth/actions';
 
 export default function ActionMenu({ order }) {
   const [visible, setVisible] = useState(false);
+  const { id } = order;
 
   const dispatch = useDispatch();
 
@@ -23,7 +29,23 @@ export default function ActionMenu({ order }) {
   }
 
   function handleDetails() {
-    dispatch(showDetails(order));
+    dispatch(createDetails(order));
+  }
+
+  function handleEdit() {
+    dispatch(createDetails(order));
+
+    history.push('/ordersedit');
+  }
+
+  function handleDelete() {
+    const verify = window.confirm(
+      'Você realmente deseja cancelar essa encomenda?'
+    );
+
+    if (verify) {
+      dispatch(deleteOrderRequest(id));
+    }
   }
 
   return (
@@ -40,13 +62,13 @@ export default function ActionMenu({ order }) {
           </button>
         </div>
         <div>
-          <Link to="/">
+          <button type="button" onClick={handleEdit}>
             <MdCreate size={16} color="#4D85EE" />
             <span>Editar</span>
-          </Link>
+          </button>
         </div>
         <div>
-          <button type="button">
+          <button type="button" onClick={handleDelete}>
             <MdDeleteForever size={16} color="#DE3B3B" />
             <span>Excluir</span>
           </button>

@@ -8,7 +8,10 @@ import pt from 'date-fns/locale/pt';
 import { Delivered, Pending, Started, Canceled } from '~/components/Status';
 import ActionMenu from '~/components/ActionMenu';
 
-import { removeDetails } from '~/store/modules/auth/actions';
+import {
+  refreshOrdersRequest,
+  removeDetails,
+} from '~/store/modules/auth/actions';
 
 import white from '~/assets/white.png';
 
@@ -20,29 +23,17 @@ import {
   DetailsBoard,
 } from './styles';
 
-import api from '~/services/api';
-
 export default function OrdersList() {
-  const [orders, setOrders] = useState([]);
   const [search, setSearch] = useState(['']);
 
+  const orders = useSelector((state) => state.auth.orders);
   const details = useSelector((state) => state.auth.details);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function loadOrders() {
-      const response = await api.get('/orders', {
-        params: {
-          product_name: search,
-        },
-      });
-
-      setOrders(response.data);
-    }
-
-    loadOrders();
-  }, [search]);
+    dispatch(refreshOrdersRequest(search));
+  }, [dispatch, search]);
 
   function toggleVisibleFadeBoard() {
     dispatch(removeDetails());
