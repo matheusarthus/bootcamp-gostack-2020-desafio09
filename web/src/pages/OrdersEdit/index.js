@@ -46,6 +46,8 @@ export default function OrdersEdit() {
       },
     });
 
+    console.tron.log(response);
+
     const data = response.data.map((deliveryman) => ({
       value: deliveryman.name,
       label: deliveryman.name,

@@ -3,8 +3,8 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 1200px;
-  margin: 50px auto;
 
+  margin: 50px auto;
   display: flex;
   flex-direction: column;
 
@@ -16,6 +16,10 @@ export const Container = styled.div`
     strong {
       font-size: 24px;
     }
+  }
+
+  ul {
+    margin-top: 10px;
   }
 `;
 
@@ -33,6 +37,7 @@ export const SubHeader = styled.div`
     background: #fff;
     padding: 5px 10px;
     border-radius: 4px;
+    border: 1px solid #dddddd;
 
     input {
       margin-left: 10px;
@@ -75,106 +80,94 @@ export const OrderTable = styled.table`
   margin-top: 30px;
   border-collapse: collapse;
   border-collapse: separate !important;
-  border-spacing: 0 15px !important;
+  border-spacing: 0 20px !important;
 
-  th,
-  td {
-    color: #666666;
-    font-size: 16px;
+  thead th {
     text-align: left;
-    padding: 15px;
-  }
-
-  td:nth-child(2) {
-    img {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-    }
-  }
-
-  td {
-    padding: 15px;
-    background: #fff;
-  }
-
-  td:first-child {
-    border-radius: 8px 0 0 8px;
-  }
-
-  td:last-child {
-    border-radius: 0 8px 8px 0;
-    position: relative;
-  }
-`;
-
-export const Badge = styled.button`
-  background: none;
-  border: 0;
-  position: relative;
-`;
-
-export const MoreOptions = styled.div`
-  position: absolute;
-  background: #fff;
-  width: 150px;
-  margin-top: 5px;
-  border-style: solid;
-  border-radius: 5px;
-  border-width: 1px;
-  border-color: #000000;
-  padding: 10px;
-  right: calc(100% - 98px);
-
-  display: ${(props) => (props.visible ? 'flex' : 'none')};
-  flex-direction: column;
-  align-items: center;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: -7px;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid rgba(0, 0, 0);
-  }
-`;
-
-export const Options = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: #ffff;
-    border: none;
+    color: #444;
     font-size: 16px;
-    padding: 5px;
-    color: #999999;
-    transition: background 0.3s;
+    padding: 6px 15px 0;
 
-    &:hover {
-      color: ${darken(0.07, '#999999')};
+    &:last-child {
+      text-align: center;
+    }
+  }
+
+  tbody tr {
+  }
+
+  tbody td {
+    background: #fff;
+    border-radius: 5px;
+    height: 57px;
+    padding: 6px 15px;
+    color: #666;
+    font-size: 16px;
+
+    &:last-child {
+      text-align: right;
     }
 
-    &:nth-child(1) {
-      margin-bottom: 5px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eeeeee;
+    div {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+  }
+`;
+
+export const FadeBoard = styled.div`
+  position: absolute;
+  display: flex;
+  top: 0;
+  z-index: 1;
+  width: 100vmax;
+  height: 100vmax;
+  background: rgba(0, 0, 0, 0.7);
+  display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
+  justify-content: center;
+`;
+
+export const DetailsBoard = styled.div`
+  margin-top: 300px;
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    & + div {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
     }
 
-    & + button {
-      margin-top: 5px;
+    strong {
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
     span {
-      margin-left: 10px;
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #666;
+    }
+
+    img {
+      background: #fff;
+      max-height: 100px;
     }
   }
 `;
