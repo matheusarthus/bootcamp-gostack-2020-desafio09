@@ -5,6 +5,8 @@ import { MdAdd, MdSearch } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
+import history from '~/services/history';
+
 import { Delivered, Pending, Started, Canceled } from '~/components/Status';
 import ActionMenu from '~/components/ActionMenu';
 
@@ -59,7 +61,12 @@ export default function OrdersList() {
                 onChange={(e) => [setSearch(e.target.value)]}
               />
             </form>
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => {
+                history.push('/ordersform');
+              }}
+            >
               <div>
                 <MdAdd size={22} color="#fff" />
               </div>

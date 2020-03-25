@@ -80,8 +80,6 @@ export default function OrdersEdit() {
         newOrder = { ...newOrder, product_name: details.product };
       }
 
-      console.tron.log(newOrder);
-
       const response = await api.put(`/orders/${details.id}`, newOrder);
 
       if (response) {
