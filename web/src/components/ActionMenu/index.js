@@ -15,9 +15,11 @@ import { Container, MoreOptions } from './styles';
 
 import {
   createOneOrder,
-  createOneDeliveryman,
   deleteOrder,
+  createOneDeliveryman,
   deleteDeliveryman,
+  createOneRecipient,
+  deleteRecipient,
 } from '~/store/modules/user/actions';
 
 export function ActionMenuOrders({ order }) {
@@ -42,7 +44,7 @@ export function ActionMenuOrders({ order }) {
 
   function handleDelete() {
     const verify = window.confirm(
-      'Você realmente deseja cancelar essa encomenda?'
+      'Você realmente deseja cancelar esta encomenda?'
     );
 
     if (verify) {
@@ -98,11 +100,61 @@ export function ActionMenuDeliverymen({ deliverymen }) {
 
   function handleDelete() {
     const verify = window.confirm(
-      'Você realmente deseja excluir esse entregador?'
+      'Você realmente deseja excluir este entregador?'
     );
 
     if (verify) {
       dispatch(deleteDeliveryman(id));
+    }
+  }
+
+  return (
+    <Container>
+      <button className="badge" onClick={handleToggleVisible} type="button">
+        <MdMoreHoriz size={20} color="#c6c6c6" />
+      </button>
+
+      <MoreOptions visible={visible}>
+        <div>
+          <button type="button" onClick={handleEdit}>
+            <MdCreate size={16} color="#4D85EE" />
+            <span>Editar</span>
+          </button>
+        </div>
+        <div>
+          <button type="button" onClick={handleDelete}>
+            <MdDeleteForever size={16} color="#DE3B3B" />
+            <span>Excluir</span>
+          </button>
+        </div>
+      </MoreOptions>
+    </Container>
+  );
+}
+
+export function ActionMenuRecipients({ recipients }) {
+  const [visible, setVisible] = useState(false);
+  const { id } = recipients;
+
+  const dispatch = useDispatch();
+
+  function handleToggleVisible() {
+    setVisible(!visible);
+  }
+
+  function handleEdit() {
+    dispatch(createOneRecipient(recipients));
+
+    history.push('/recipientsedit');
+  }
+
+  function handleDelete() {
+    const verify = window.confirm(
+      'Você realmente deseja excluir este detinatário?'
+    );
+
+    if (verify) {
+      dispatch(deleteRecipient(id));
     }
   }
 

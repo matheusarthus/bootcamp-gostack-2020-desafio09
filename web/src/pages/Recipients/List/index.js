@@ -5,7 +5,7 @@ import { MdAdd, MdSearch } from 'react-icons/md';
 
 import history from '~/services/history';
 
-import { ActionMenuDeliverymen } from '~/components/ActionMenu';
+import { ActionMenuRecipients } from '~/components/ActionMenu';
 
 import { refreshRecipientsRequest } from '~/store/modules/user/actions';
 
@@ -71,7 +71,7 @@ export default function RecipientsList() {
                   - {recipient.estado}
                 </td>
                 <td>
-                  <ActionMenuDeliverymen deliverymen={recipient} />
+                  <ActionMenuRecipients recipients={recipient} />
                 </td>
               </tr>
             ))}

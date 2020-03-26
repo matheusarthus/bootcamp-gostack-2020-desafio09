@@ -87,6 +87,14 @@ class DeliverymanController {
       return res.status(400).json({ erro: 'Deliveryman does not exist.' });
     }
 
+    const deliverymanDeleted = await Deliveryman.findOne({
+      where: { id: req.params.id, deleted_at: null },
+    });
+
+    if (!deliverymanDeleted) {
+      return res.status(400).json({ erro: 'Deliveryman deleted.' });
+    }
+
     if (req.body.email) {
       const emailExist = await Deliveryman.findOne({
         where: { email: req.body.email },
@@ -120,26 +128,3 @@ class DeliverymanController {
 }
 
 export default new DeliverymanController();
-
-/* async update(req, res) {
-  const schema = Yup.object().shape({
-    name: Yup.string().required(),
-    email: Yup.string().email(),
-  });
-
-  if (!(await schema.isValid(req.body))) {
-    return res.status(400).json({ error: 'Validation Fail' });
-  }
-
-  const deliveryman = await Deliveryman.findOne({
-    where: { name: req.body.name, deleted_at: null },
-  });
-
-  if (!deliveryman) {
-    return res.status(400).json({ erro: 'Deliveryman does not exist.' });
-  }
-
-  const { id, name, email } = await deliveryman.update(req.body);
-
-  return res.json({ id, name, email });
-} */

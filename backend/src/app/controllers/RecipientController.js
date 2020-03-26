@@ -8,7 +8,7 @@ class RecipientController {
     const { recipient } = req.query;
 
     const response = await Recipient.findAll({
-      where: { name: { [Op.like]: `%${recipient}%` } },
+      where: { name: { [Op.like]: `%${recipient}%` }, deleted_at: null },
       order: ['created_at'],
       attributes: [
         'id',
@@ -19,6 +19,7 @@ class RecipientController {
         'estado',
         'cidade',
         'cep',
+        'deleted_at',
       ],
     });
 
@@ -75,7 +76,7 @@ class RecipientController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
+      name: Yup.string(),
       logradouro: Yup.string(),
       numero: Yup.number(),
       complemento: Yup.string().max(20),
@@ -88,18 +89,23 @@ class RecipientController {
       return res.status(400).json({ error: 'Validation Fail' });
     }
 
-    const { name } = req.body;
-
-    const recipient = await Recipient.findOne({
-      where: { name },
-    });
+    const recipient = await Recipient.findByPk(req.params.id);
 
     if (!recipient) {
       return res.status(400).json({ erro: 'Recipient does not exist.' });
     }
 
+    const recipientDeleted = await Recipient.findOne({
+      where: { id: req.params.id, deleted_at: null },
+    });
+
+    if (!recipientDeleted) {
+      return res.status(400).json({ erro: 'Recipient deleted.' });
+    }
+
     const {
       id,
+      name,
       logradouro,
       numero,
       complemento,
@@ -120,6 +126,20 @@ class RecipientController {
         cep,
       },
     });
+  }
+
+  async delete(req, res) {
+    const recipient = await Recipient.findByPk(req.params.id);
+
+    if (!recipient) {
+      return res.status(400).json({ erro: 'Recipient does not exist.' });
+    }
+
+    recipient.deleted_at = new Date();
+
+    await recipient.save();
+
+    return res.json(recipient);
   }
 }
 
