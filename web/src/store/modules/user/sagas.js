@@ -38,7 +38,7 @@ export function* deleteOrder({ payload }) {
 
     yield put(refreshOrdersRequest(''));
   } catch (err) {
-    toast.error('Não há encomendas cadastradas.');
+    toast.error('Não foi possível cancelar a encomenda selecionada.');
   }
 }
 
@@ -68,7 +68,7 @@ export function* deleteDeliveryman({ payload }) {
 
     yield put(refreshDeliverymenRequest(''));
   } catch (err) {
-    toast.error('Não há entregadores cadastrados.');
+    toast.error('Não foi possível excluir o entregador selecionado.');
   }
 }
 
@@ -98,7 +98,7 @@ export function* deleteRecipient({ payload }) {
 
     yield put(refreshRecipientsRequest(''));
   } catch (err) {
-    toast.error('Não há destinatários cadastrados.');
+    toast.error('Não foi possível excluir o destinatário selecionado.');
   }
 }
 

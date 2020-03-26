@@ -31,6 +31,7 @@ export default function DeliverymenForm() {
         };
       } else {
         toast.error('É preciso definir um e-mail para o entregador.');
+        return;
       }
 
       newDeliveryman = { ...newDeliveryman, avatar_id };

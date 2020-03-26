@@ -22,33 +22,80 @@ export default function RecipientsEdit() {
 
   async function updateRecipient() {
     try {
-      const newRecipient = {};
+      let newRecipient = {};
 
-      /*  if (recipientName !== '') {
+      if (recipientName !== '') {
         newRecipient = { name: recipientName };
       } else {
-        newRecipient = { name: oneDeliveryman.name };
+        newRecipient = { name: oneRecipient.name };
       }
 
-      if (deliverymanEmail !== '') {
+      if (recipientStreet !== '') {
+        newRecipient = { ...newRecipient, logradouro: recipientStreet };
+      } else {
         newRecipient = {
           ...newRecipient,
-          email: deliverymanEmail,
+          logradouro: oneRecipient.logradouro,
         };
       }
 
-      newRecipient = { ...newRecipient, avatar_id }; */
+      if (recipientComplement !== '') {
+        newRecipient = { ...newRecipient, complemento: recipientComplement };
+      } else {
+        newRecipient = {
+          ...newRecipient,
+          complemento: oneRecipient.complemento,
+        };
+      }
+
+      if (recipientNumber !== '') {
+        newRecipient = { ...newRecipient, numero: recipientNumber };
+      } else {
+        newRecipient = {
+          ...newRecipient,
+          numero: oneRecipient.numero,
+        };
+      }
+
+      if (recipientCity !== '') {
+        newRecipient = { ...newRecipient, cidade: recipientCity };
+      } else {
+        newRecipient = {
+          ...newRecipient,
+          cidade: oneRecipient.cidade,
+        };
+      }
+
+      if (recipientCountry !== '') {
+        newRecipient = { ...newRecipient, estado: recipientCountry };
+      } else {
+        newRecipient = {
+          ...newRecipient,
+          estado: oneRecipient.estado,
+        };
+      }
+
+      if (recipientZipcode !== '') {
+        newRecipient = { ...newRecipient, cep: recipientZipcode };
+      } else {
+        newRecipient = {
+          ...newRecipient,
+          cep: oneRecipient.cep,
+        };
+      }
+
+      console.tron.log(newRecipient);
 
       const response = await api.put(
-        `deliverymen/${oneRecipient.id}`,
+        `recipients/${oneRecipient.id}`,
         newRecipient
       );
 
       if (response) {
-        toast.success('Cadastro de entregador atualizado com sucesso!');
+        toast.success('Cadastro de destinatário atualizado com sucesso!');
       }
     } catch (error) {
-      toast.error('Não foi possível editar o cadastro deste entregador.');
+      toast.error('Não foi possível editar o cadastro deste destinatário.');
     }
   }
 
