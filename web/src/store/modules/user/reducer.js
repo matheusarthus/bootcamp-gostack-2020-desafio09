@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   oneOrder: null,
   deliverymen: [],
   oneDeliveryman: null,
+  recipients: [],
+  oneRecipient: null,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -20,11 +22,6 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.oneOrder = null;
         break;
       }
-      case '@auth/REFRESH_DELIVERYMEN_SUCCESS': {
-        draft.deliverymen = action.payload.deliverymen;
-        draft.oneDeliveryman = null;
-        break;
-      }
       case '@auth/CREATE_ONEORDER': {
         draft.oneOrder = action.payload.data;
         break;
@@ -33,12 +30,30 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.oneOrder = null;
         break;
       }
+      case '@auth/REFRESH_DELIVERYMEN_SUCCESS': {
+        draft.deliverymen = action.payload.deliverymen;
+        draft.oneDeliveryman = null;
+        break;
+      }
       case '@auth/CREATE_ONEDELIVERYMAN': {
         draft.oneDeliveryman = action.payload.data;
         break;
       }
       case '@auth/REMOVE_ONEDELIVERYMAN': {
         draft.oneDeliveryman = null;
+        break;
+      }
+      case '@auth/REFRESH_RECIPIENTS_SUCCESS': {
+        draft.recipients = action.payload.recipients;
+        draft.oneRecipient = null;
+        break;
+      }
+      case '@auth/CREATE_ONERECIPIENT': {
+        draft.oneRecipient = action.payload.data;
+        break;
+      }
+      case '@auth/REMOVE_ONERECIPIENT': {
+        draft.oneRecipient = null;
         break;
       }
       default:

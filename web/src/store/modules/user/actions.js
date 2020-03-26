@@ -1,3 +1,5 @@
+// ORDERS -------------------------------------------------------
+
 export function refreshOrdersRequest(search) {
   return {
     type: '@auth/REFRESH_ORDERS_REQUEST',
@@ -19,27 +21,6 @@ export function deleteOrder(id) {
   };
 }
 
-export function refreshDeliverymenSuccess(deliverymen) {
-  return {
-    type: '@auth/REFRESH_DELIVERYMEN_SUCCESS',
-    payload: { deliverymen },
-  };
-}
-
-export function refreshDeliverymenRequest(search) {
-  return {
-    type: '@auth/REFRESH_DELIVERYMEN_REQUEST',
-    payload: { search },
-  };
-}
-
-export function deleteDeliveryman(id) {
-  return {
-    type: '@auth/DELETE_DELIVERYMAN',
-    payload: { id },
-  };
-}
-
 export function createOneOrder(data) {
   return {
     type: '@auth/CREATE_ONEORDER',
@@ -53,6 +34,29 @@ export function removeOneOrder() {
   };
 }
 
+// DELIVERYMEN ---------------------------------------------------
+
+export function refreshDeliverymenRequest(search) {
+  return {
+    type: '@auth/REFRESH_DELIVERYMEN_REQUEST',
+    payload: { search },
+  };
+}
+
+export function refreshDeliverymenSuccess(deliverymen) {
+  return {
+    type: '@auth/REFRESH_DELIVERYMEN_SUCCESS',
+    payload: { deliverymen },
+  };
+}
+
+export function deleteDeliveryman(id) {
+  return {
+    type: '@auth/DELETE_DELIVERYMAN',
+    payload: { id },
+  };
+}
+
 export function createOneDeliveryman(data) {
   return {
     type: '@auth/CREATE_ONEDELIVERYMAN',
@@ -63,5 +67,41 @@ export function createOneDeliveryman(data) {
 export function removeOneDeliveryman() {
   return {
     type: '@auth/REMOVE_ONEDELIVERYMAN',
+  };
+}
+
+// RECIPIENTS ---------------------------------------------------
+
+export function refreshRecipientsRequest(search) {
+  return {
+    type: '@auth/REFRESH_RECIPIENTS_REQUEST',
+    payload: { search },
+  };
+}
+
+export function refreshRecipientsSuccess(recipients) {
+  return {
+    type: '@auth/REFRESH_RECIPIENTS_SUCCESS',
+    payload: { recipients },
+  };
+}
+
+export function deleteRecipient(id) {
+  return {
+    type: '@auth/DELETE_RECIPIENT',
+    payload: { id },
+  };
+}
+
+export function createOneRecipient(data) {
+  return {
+    type: '@auth/CREATE_ONERECIPIENT',
+    payload: { data },
+  };
+}
+
+export function removeOneRecipient() {
+  return {
+    type: '@auth/REMOVE_ONERECIPIENT',
   };
 }

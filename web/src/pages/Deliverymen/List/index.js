@@ -7,7 +7,7 @@ import history from '~/services/history';
 
 import { ActionMenuDeliverymen } from '~/components/ActionMenu';
 
-import { refreshDeliverymenRequest } from '~/store/modules/auth/actions';
+import { refreshDeliverymenRequest } from '~/store/modules/user/actions';
 
 import { Container, OrderTable, SubHeader } from './styles';
 
