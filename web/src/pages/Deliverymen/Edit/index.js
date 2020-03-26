@@ -36,18 +36,16 @@ export default function DeliverymenEdit() {
 
       newDeliveryman = { ...newDeliveryman, avatar_id };
 
-      console.tron.log(newDeliveryman);
-
       const response = await api.put(
         `deliverymen/${oneDeliveryman.id}`,
         newDeliveryman
       );
 
       if (response) {
-        toast.success('Perfil de entregador atualizado com sucesso!');
+        toast.success('Cadastro de entregador atualizado com sucesso!');
       }
     } catch (error) {
-      toast.error('Não foi possível editar o perfil deste entregador.');
+      toast.error('Não foi possível editar o cadastro deste entregador.');
     }
   }
 
