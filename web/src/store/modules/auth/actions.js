@@ -32,17 +32,38 @@ export function refreshOrdersSuccess(orders) {
   };
 }
 
-export function deleteOrderRequest(id) {
+export function deleteOrder(id) {
   return {
-    type: '@auth/DELETE_ORDER_REQUEST',
+    type: '@auth/DELETE_ORDER',
     payload: { id },
   };
 }
 
-export function createDetails(order) {
+export function refreshDeliverymenSuccess(deliverymen) {
+  return {
+    type: '@auth/REFRESH_DELIVERYMEN_SUCCESS',
+    payload: { deliverymen },
+  };
+}
+
+export function refreshDeliverymenRequest(search) {
+  return {
+    type: '@auth/REFRESH_DELIVERYMEN_REQUEST',
+    payload: { search },
+  };
+}
+
+export function deleteDeliveryman(id) {
+  return {
+    type: '@auth/DELETE_DELIVERYMAN',
+    payload: { id },
+  };
+}
+
+export function createDetails(data) {
   return {
     type: '@auth/CREATE_DETAILS',
-    payload: { order },
+    payload: { data },
   };
 }
 

@@ -8,12 +8,12 @@ import pt from 'date-fns/locale/pt';
 import history from '~/services/history';
 
 import { Delivered, Pending, Started, Canceled } from '~/components/Status';
-import ActionMenu from '~/components/ActionMenu';
+import { ActionMenuOrders } from '~/components/ActionMenu';
 
 import {
   refreshOrdersRequest,
-  removeDetails,
-} from '~/store/modules/auth/actions';
+  removeOneOrder,
+} from '~/store/modules/user/actions';
 
 import white from '~/assets/white.png';
 
@@ -28,8 +28,8 @@ import {
 export default function OrdersList() {
   const [search, setSearch] = useState(['']);
 
-  const orders = useSelector((state) => state.auth.orders);
-  const details = useSelector((state) => state.auth.details);
+  const orders = useSelector((state) => state.user.orders);
+  const oneOrder = useSelector((state) => state.user.oneOrder);
 
   const dispatch = useDispatch();
 
@@ -38,7 +38,7 @@ export default function OrdersList() {
   }, [dispatch, search]);
 
   function toggleVisibleFadeBoard() {
-    dispatch(removeDetails());
+    dispatch(removeOneOrder());
   }
 
   const formattedDate = (fdate) =>
@@ -122,39 +122,39 @@ export default function OrdersList() {
                   ) : null}
                 </td>
                 <td>
-                  <ActionMenu order={order} />
+                  <ActionMenuOrders order={order} />
                 </td>
               </tr>
             ))}
           </tbody>
         </OrderTable>
       </Container>
-      <FadeBoard onClick={toggleVisibleFadeBoard} visible={details}>
+      <FadeBoard onClick={toggleVisibleFadeBoard} visible={oneOrder}>
         <DetailsBoard>
           <div>
             <strong>Informações da encomenda</strong>
             <span>
-              {details ? details.recipient.logradouro : ''},{' '}
-              {details ? details.recipient.numero : ''}
+              {oneOrder ? oneOrder.recipient.logradouro : ''},{' '}
+              {oneOrder ? oneOrder.recipient.numero : ''}
             </span>
             <span>
-              {details ? details.recipient.cidade : ''}
+              {oneOrder ? oneOrder.recipient.cidade : ''}
               {' - '}
-              {details ? details.recipient.estado : ''}
+              {oneOrder ? oneOrder.recipient.estado : ''}
             </span>
-            <span>CEP: {details ? details.recipient.cep : ''}</span>
+            <span>CEP: {oneOrder ? oneOrder.recipient.cep : ''}</span>
           </div>
           <div>
             <strong>Datas</strong>
-            {details && details.canceled_at ? (
+            {oneOrder && oneOrder.canceled_at ? (
               <span>ENCOMENDA CANCELADA</span>
             ) : (
               <>
                 <span>
-                  Retirada: {details ? formattedDate(details.start_date) : ''}
+                  Retirada: {oneOrder ? formattedDate(oneOrder.start_date) : ''}
                 </span>
                 <span>
-                  Entrega: {details ? formattedDate(details.end_date) : ''}
+                  Entrega: {oneOrder ? formattedDate(oneOrder.end_date) : ''}
                 </span>
               </>
             )}
@@ -164,9 +164,9 @@ export default function OrdersList() {
             <img
               alt="signature"
               src={
-                details
-                  ? details.signature
-                    ? details.signature.url
+                oneOrder
+                  ? oneOrder.signature
+                    ? oneOrder.signature.url
                     : white
                   : ''
               }

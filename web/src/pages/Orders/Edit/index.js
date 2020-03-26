@@ -20,7 +20,7 @@ export default function OrdersEdit() {
   const [recipientName, setRecipientName] = useState('');
   const [productName, setProductName] = useState('');
 
-  const details = useSelector((state) => state.auth.details);
+  const oneOrder = useSelector((state) => state.user.oneOrder);
 
   async function loadOptionsRecipients(inputValue, callback) {
     const response = await api.get('/recipients', {
@@ -46,8 +46,6 @@ export default function OrdersEdit() {
       },
     });
 
-    console.tron.log(response);
-
     const data = response.data.map((deliveryman) => ({
       value: deliveryman.name,
       label: deliveryman.name,
@@ -67,22 +65,22 @@ export default function OrdersEdit() {
       if (deliverymanName !== '') {
         newOrder = { deliveryman_name: deliverymanName.value };
       } else {
-        newOrder = { deliveryman_name: details.deliveryman.name };
+        newOrder = { deliveryman_name: oneOrder.deliveryman.name };
       }
 
       if (recipientName !== '') {
         newOrder = { ...newOrder, recipient_name: recipientName.value };
       } else {
-        newOrder = { ...newOrder, recipient_name: details.recipient.name };
+        newOrder = { ...newOrder, recipient_name: oneOrder.recipient.name };
       }
 
       if (productName !== '') {
         newOrder = { ...newOrder, product_name: productName };
       } else {
-        newOrder = { ...newOrder, product_name: details.product };
+        newOrder = { ...newOrder, product_name: oneOrder.product };
       }
 
-      const response = await api.put(`/orders/${details.id}`, newOrder);
+      const response = await api.put(`/orders/${oneOrder.id}`, newOrder);
 
       if (response) {
         toast.success('Encomenda editada com sucesso!');
@@ -126,7 +124,7 @@ export default function OrdersEdit() {
             <span>Destinatário</span>
             <Select
               cacheOptions
-              placeholder={details.recipient.name}
+              placeholder={oneOrder.recipient.name}
               noOptionsMessage={() => 'Nenhum destinatário encontrado'}
               defaultOptions
               loadOptions={loadOptionsRecipients}
@@ -137,7 +135,7 @@ export default function OrdersEdit() {
             <span>Entregador</span>
             <Select
               cacheOptions
-              placeholder={details.deliveryman.name}
+              placeholder={oneOrder.deliveryman.name}
               noOptionsMessage={() => 'Nenhum destinatário encontrado'}
               defaultOptions
               loadOptions={loadOptionsDeliverymen}
@@ -149,7 +147,7 @@ export default function OrdersEdit() {
           <span>Nome do Produto</span>
           <input
             type="text"
-            placeholder={details.product}
+            placeholder={oneOrder.product}
             value={productName}
             onChange={(e) => [setProductName(e.target.value)]}
           />

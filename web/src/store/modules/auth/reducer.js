@@ -4,8 +4,6 @@ const INITIAL_STATE = {
   token: null,
   signed: false,
   loading: false,
-  orders: [],
-  details: null,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -23,19 +21,6 @@ export default function auth(state = INITIAL_STATE, action) {
       }
       case '@auth/SIGN_FAILURE': {
         draft.loading = false;
-        break;
-      }
-      case '@auth/REFRESH_ORDERS_SUCCESS': {
-        draft.orders = action.payload.orders;
-        draft.details = null;
-        break;
-      }
-      case '@auth/CREATE_DETAILS': {
-        draft.details = action.payload.order;
-        break;
-      }
-      case '@auth/REMOVE_DETAILS': {
-        draft.details = null;
         break;
       }
       default:

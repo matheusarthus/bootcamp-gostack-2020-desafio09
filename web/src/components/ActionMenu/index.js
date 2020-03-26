@@ -14,11 +14,13 @@ import history from '~/services/history';
 import { Container, MoreOptions } from './styles';
 
 import {
-  createDetails,
-  deleteOrderRequest,
-} from '~/store/modules/auth/actions';
+  createOneOrder,
+  createOneDeliveryman,
+  deleteOrder,
+  deleteDeliveryman,
+} from '~/store/modules/user/actions';
 
-export default function ActionMenu({ order }) {
+export function ActionMenuOrders({ order }) {
   const [visible, setVisible] = useState(false);
   const { id } = order;
 
@@ -29,11 +31,11 @@ export default function ActionMenu({ order }) {
   }
 
   function handleDetails() {
-    dispatch(createDetails(order));
+    dispatch(createOneOrder(order));
   }
 
   function handleEdit() {
-    dispatch(createDetails(order));
+    dispatch(createOneOrder(order));
 
     history.push('/ordersedit');
   }
@@ -44,7 +46,7 @@ export default function ActionMenu({ order }) {
     );
 
     if (verify) {
-      dispatch(deleteOrderRequest(id));
+      dispatch(deleteOrder(id));
     }
   }
 
@@ -61,6 +63,56 @@ export default function ActionMenu({ order }) {
             <span>Visualizar</span>
           </button>
         </div>
+        <div>
+          <button type="button" onClick={handleEdit}>
+            <MdCreate size={16} color="#4D85EE" />
+            <span>Editar</span>
+          </button>
+        </div>
+        <div>
+          <button type="button" onClick={handleDelete}>
+            <MdDeleteForever size={16} color="#DE3B3B" />
+            <span>Excluir</span>
+          </button>
+        </div>
+      </MoreOptions>
+    </Container>
+  );
+}
+
+export function ActionMenuDeliverymen({ deliverymen }) {
+  const [visible, setVisible] = useState(false);
+  const { id } = deliverymen;
+
+  const dispatch = useDispatch();
+
+  function handleToggleVisible() {
+    setVisible(!visible);
+  }
+
+  function handleEdit() {
+    dispatch(createOneDeliveryman(deliverymen));
+
+    history.push('/deliverymenedit');
+  }
+
+  function handleDelete() {
+    const verify = window.confirm(
+      'Você realmente deseja excluir esse entregador?'
+    );
+
+    if (verify) {
+      dispatch(deleteDeliveryman(id));
+    }
+  }
+
+  return (
+    <Container>
+      <button className="badge" onClick={handleToggleVisible} type="button">
+        <MdMoreHoriz size={20} color="#c6c6c6" />
+      </button>
+
+      <MoreOptions visible={visible}>
         <div>
           <button type="button" onClick={handleEdit}>
             <MdCreate size={16} color="#4D85EE" />

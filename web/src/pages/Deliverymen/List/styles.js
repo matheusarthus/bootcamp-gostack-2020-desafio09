@@ -93,9 +93,6 @@ export const OrderTable = styled.table`
     }
   }
 
-  tbody tr {
-  }
-
   tbody td {
     background: #fff;
     border-radius: 5px;
@@ -105,69 +102,13 @@ export const OrderTable = styled.table`
     font-size: 16px;
 
     &:last-child {
-      text-align: right;
-    }
-
-    div {
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        margin-right: 10px;
-      }
-    }
-  }
-`;
-
-export const FadeBoard = styled.div`
-  position: absolute;
-  display: flex;
-  top: 0;
-  z-index: 1;
-  width: 100vmax;
-  height: 100vmax;
-  background: rgba(0, 0, 0, 0.7);
-  display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
-  justify-content: center;
-`;
-
-export const DetailsBoard = styled.div`
-  margin-top: 300px;
-  width: 500px;
-  height: 400px;
-  background: #fff;
-  border-radius: 5px;
-  display: flex;
-  padding: 20px;
-  justify-content: space-between;
-  flex-direction: column;
-
-  div {
-    display: flex;
-    flex-direction: column;
-
-    & + div {
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-    }
-
-    strong {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    span {
-      font-size: 16px;
-      margin-bottom: 5px;
-      color: #666;
     }
 
     img {
-      background: #fff;
-      max-height: 100px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 10px;
     }
   }
 `;
