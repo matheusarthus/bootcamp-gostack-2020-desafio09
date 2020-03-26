@@ -6,7 +6,8 @@ import Recipient from '../models/Recipient';
 class ProblemsController {
   async index(req, res) {
     const problems = await Problem.findAll({
-      attributes: ['delivery_id', 'description'],
+      attributes: ['id', 'delivery_id', 'description'],
+      order: ['created_at'],
       include: [
         {
           model: Order,

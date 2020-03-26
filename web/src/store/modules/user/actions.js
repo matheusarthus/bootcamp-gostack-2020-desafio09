@@ -105,3 +105,39 @@ export function removeOneRecipient() {
     type: '@auth/REMOVE_ONERECIPIENT',
   };
 }
+
+// RECIPIENTS ---------------------------------------------------
+
+export function refreshProblemsRequest(search) {
+  return {
+    type: '@auth/REFRESH_PROBLEMS_REQUEST',
+    payload: { search },
+  };
+}
+
+export function refreshProblemsSuccess(problems) {
+  return {
+    type: '@auth/REFRESH_PROBLEMS_SUCCESS',
+    payload: { problems },
+  };
+}
+
+export function deleteProblem(id) {
+  return {
+    type: '@auth/DELETE_PROBLEM',
+    payload: { id },
+  };
+}
+
+export function createOneProblem(data) {
+  return {
+    type: '@auth/CREATE_ONEPROBLEM',
+    payload: { data },
+  };
+}
+
+export function removeOneProblem() {
+  return {
+    type: '@auth/REMOVE_ONEPROBLEM',
+  };
+}

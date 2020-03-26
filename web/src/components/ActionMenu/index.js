@@ -11,7 +11,7 @@ import {
 
 import history from '~/services/history';
 
-import { Container, MoreOptions } from './styles';
+import { Container, MoreOptions, MoreOptionsProblems } from './styles';
 
 import {
   createOneOrder,
@@ -20,6 +20,8 @@ import {
   deleteDeliveryman,
   createOneRecipient,
   deleteRecipient,
+  createOneProblem,
+  deleteProblem,
 } from '~/store/modules/user/actions';
 
 export function ActionMenuOrders({ order }) {
@@ -178,6 +180,54 @@ export function ActionMenuRecipients({ recipients }) {
           </button>
         </div>
       </MoreOptions>
+    </Container>
+  );
+}
+
+export function ActionMenuProblems({ problem }) {
+  const [visible, setVisible] = useState(false);
+  const { id } = problem;
+
+  const dispatch = useDispatch();
+
+  function handleToggleVisible() {
+    setVisible(!visible);
+  }
+
+  function handleDetails() {
+    dispatch(createOneProblem(problem));
+  }
+
+  function handleDelete() {
+    const verify = window.confirm(
+      'Você realmente deseja cancelar a encomenda relativa a esse problema?'
+    );
+
+    if (verify) {
+      dispatch(deleteProblem(id));
+    }
+  }
+
+  return (
+    <Container>
+      <button className="badge" onClick={handleToggleVisible} type="button">
+        <MdMoreHoriz size={20} color="#c6c6c6" />
+      </button>
+
+      <MoreOptionsProblems visible={visible}>
+        <div>
+          <button type="button" onClick={handleDetails}>
+            <MdVisibility size={16} color="#8E58E8" />
+            <span>Visualizar</span>
+          </button>
+        </div>
+        <div>
+          <button type="button" onClick={handleDelete}>
+            <MdDeleteForever size={16} color="#DE3B3B" />
+            <span>Cancelar encomenda</span>
+          </button>
+        </div>
+      </MoreOptionsProblems>
     </Container>
   );
 }

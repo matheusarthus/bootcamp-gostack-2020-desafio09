@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   oneDeliveryman: null,
   recipients: [],
   oneRecipient: null,
+  problems: [],
+  oneProblem: null,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -54,6 +56,19 @@ export default function auth(state = INITIAL_STATE, action) {
       }
       case '@auth/REMOVE_ONERECIPIENT': {
         draft.oneRecipient = null;
+        break;
+      }
+      case '@auth/REFRESH_PROBLEMS_SUCCESS': {
+        draft.problems = action.payload.problems;
+        draft.oneProblem = null;
+        break;
+      }
+      case '@auth/CREATE_ONEPROBLEM': {
+        draft.oneProblem = action.payload.data;
+        break;
+      }
+      case '@auth/REMOVE_ONEPROBLEM': {
+        draft.oneProblem = null;
         break;
       }
       default:

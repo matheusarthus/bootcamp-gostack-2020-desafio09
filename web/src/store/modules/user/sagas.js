@@ -10,6 +10,8 @@ import {
   refreshDeliverymenSuccess,
   refreshRecipientsRequest,
   refreshRecipientsSuccess,
+  refreshProblemsRequest,
+  refreshProblemsSuccess,
 } from './actions';
 
 // ORDERS -------------------------------------------------------
@@ -35,6 +37,10 @@ export function* deleteOrder({ payload }) {
     const { id } = payload;
 
     const response = yield call(api.delete, `/orders/${id}`);
+
+    if (response) {
+      toast.success('Encomenda cancelada com sucesso!');
+    }
 
     yield put(refreshOrdersRequest(''));
   } catch (err) {
@@ -66,7 +72,11 @@ export function* deleteDeliveryman({ payload }) {
 
     const response = yield call(api.delete, `/deliverymen/${id}`);
 
-    yield put(refreshDeliverymenRequest(''));
+    if (response) {
+      toast.success('Entragador excluído com sucesso!');
+    }
+
+    yield put(refreshProblemsRequest(''));
   } catch (err) {
     toast.error('Não foi possível excluir o entregador selecionado.');
   }
@@ -96,13 +106,45 @@ export function* deleteRecipient({ payload }) {
 
     const response = yield call(api.delete, `/recipients/${id}`);
 
+    if (response) {
+      toast.success('Destinatário excluído com sucesso!');
+    }
+
     yield put(refreshRecipientsRequest(''));
   } catch (err) {
     toast.error('Não foi possível excluir o destinatário selecionado.');
   }
 }
 
+// PROBLEMS ---------------------------------------------------
+
+export function* refreshProblems() {
+  try {
+    const response = yield call(api.get, '/problems');
+
+    yield put(refreshProblemsSuccess(response.data));
+  } catch (err) {
+    toast.error('Não há encomendas com problema');
+  }
+}
+
+export function* deleteProblem({ payload }) {
+  try {
+    const { id } = payload;
+
+    const response = yield call(api.delete, `/problem/${id}/cancel-delivery`);
+
+    if (response) {
+      toast.success('Encomenda cancelada com sucesso!');
+    }
+  } catch (err) {
+    toast.error('Não foi possível cancelar a encomenda.');
+  }
+}
+
 export default all([
+  takeLatest('@auth/DELETE_PROBLEM', deleteProblem),
+  takeLatest('@auth/REFRESH_PROBLEMS_REQUEST', refreshProblems),
   takeLatest('@auth/DELETE_RECIPIENT', deleteRecipient),
   takeLatest('@auth/REFRESH_RECIPIENTS_REQUEST', refreshRecipients),
   takeLatest('@auth/DELETE_DELIVERYMAN', deleteDeliveryman),
