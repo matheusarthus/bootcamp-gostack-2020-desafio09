@@ -88,11 +88,12 @@ export function* deleteDeliveryman({ payload }) {
 
 export function* refreshRecipients({ payload }) {
   try {
-    const { search } = payload;
+    const { search, page } = payload;
 
     const response = yield call(api.get, '/recipients', {
       params: {
         recipient: search,
+        page,
       },
     });
 

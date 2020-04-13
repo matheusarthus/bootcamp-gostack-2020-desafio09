@@ -72,10 +72,10 @@ export function removeOneDeliveryman() {
 
 // RECIPIENTS ---------------------------------------------------
 
-export function refreshRecipientsRequest(search) {
+export function refreshRecipientsRequest(search, page) {
   return {
     type: '@auth/REFRESH_RECIPIENTS_REQUEST',
-    payload: { search },
+    payload: { search, page },
   };
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { MdAdd, MdSearch } from 'react-icons/md';
+import { MdAdd, MdSearch, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import history from '~/services/history';
 
@@ -9,18 +9,19 @@ import { ActionMenuRecipients } from '~/components/ActionMenu';
 
 import { refreshRecipientsRequest } from '~/store/modules/user/actions';
 
-import { Container, OrderTable, SubHeader } from './styles';
+import { Container, OrderTable, SubHeader, DivButtons } from './styles';
 
 export default function RecipientsList() {
   const [search, setSearch] = useState(['']);
+  const [page, setPage] = useState(1);
 
   const recipients = useSelector((state) => state.user.recipients);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshRecipientsRequest(search));
-  }, [dispatch, search]);
+    dispatch(refreshRecipientsRequest(search, page));
+  }, [dispatch, search, page]);
 
   return (
     <>
@@ -77,6 +78,27 @@ export default function RecipientsList() {
             ))}
           </tbody>
         </OrderTable>
+        <DivButtons page={page} recipients={Object.keys(recipients).length}>
+          <button
+            id="left"
+            type="button"
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            <MdChevronLeft size={35} color="#999999" />
+          </button>
+          <span>{page}</span>
+          <button
+            id="right"
+            type="button"
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            <MdChevronRight size={35} color="#999999" />
+          </button>
+        </DivButtons>
       </Container>
     </>
   );
