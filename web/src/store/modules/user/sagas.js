@@ -121,9 +121,15 @@ export function* deleteRecipient({ payload }) {
 
 // PROBLEMS ---------------------------------------------------
 
-export function* refreshProblems() {
+export function* refreshProblems({ payload }) {
+  const { page } = payload;
+
   try {
-    const response = yield call(api.get, '/problems');
+    const response = yield call(api.get, '/problems', {
+      params: {
+        page,
+      },
+    });
 
     yield put(refreshProblemsSuccess(response.data));
   } catch (err) {

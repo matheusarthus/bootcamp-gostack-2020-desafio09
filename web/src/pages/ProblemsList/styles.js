@@ -171,3 +171,27 @@ export const DetailsBoard = styled.div`
     }
   }
 `;
+
+export const DivButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  #left {
+    display: ${(props) => (props.page <= 1 ? 'none' : 'flex')};
+  }
+
+  #right {
+    display: ${(props) => (props.problems < 10 ? 'none' : 'flex')};
+  }
+
+  span {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+`;

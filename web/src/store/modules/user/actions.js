@@ -106,12 +106,12 @@ export function removeOneRecipient() {
   };
 }
 
-// RECIPIENTS ---------------------------------------------------
+// PROBLEMS ---------------------------------------------------
 
-export function refreshProblemsRequest(search) {
+export function refreshProblemsRequest(page) {
   return {
     type: '@auth/REFRESH_PROBLEMS_REQUEST',
-    payload: { search },
+    payload: { page },
   };
 }
 
