@@ -18,11 +18,12 @@ import {
 
 export function* refreshOrders({ payload }) {
   try {
-    const { search } = payload;
+    const { search, page } = payload;
 
     const response = yield call(api.get, '/orders', {
       params: {
         product_name: search,
+        page,
       },
     });
 

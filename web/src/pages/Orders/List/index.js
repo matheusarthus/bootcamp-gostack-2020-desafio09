@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { MdAdd, MdSearch } from 'react-icons/md';
+import { MdAdd, MdSearch, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
@@ -23,10 +23,12 @@ import {
   SubHeader,
   FadeBoard,
   DetailsBoard,
+  DivButtons,
 } from './styles';
 
 export default function OrdersList() {
   const [search, setSearch] = useState(['']);
+  const [page, setPage] = useState(1);
 
   const orders = useSelector((state) => state.user.orders);
   const oneOrder = useSelector((state) => state.user.oneOrder);
@@ -34,8 +36,8 @@ export default function OrdersList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshOrdersRequest(search));
-  }, [dispatch, search]);
+    dispatch(refreshOrdersRequest(search, page));
+  }, [dispatch, search, page]);
 
   function toggleVisibleFadeBoard() {
     dispatch(removeOneOrder());
@@ -128,6 +130,27 @@ export default function OrdersList() {
             ))}
           </tbody>
         </OrderTable>
+        <DivButtons page={page} orders={Object.keys(orders).length}>
+          <button
+            id="left"
+            type="button"
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            <MdChevronLeft size={35} color="#999999" />
+          </button>
+          <span>{page}</span>
+          <button
+            id="right"
+            type="button"
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            <MdChevronRight size={35} color="#999999" />
+          </button>
+        </DivButtons>
       </Container>
       <FadeBoard onClick={toggleVisibleFadeBoard} visible={oneOrder}>
         <DetailsBoard>

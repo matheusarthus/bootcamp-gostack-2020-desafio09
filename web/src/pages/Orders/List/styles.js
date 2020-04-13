@@ -98,14 +98,20 @@ export const OrderTable = styled.table`
 
   tbody td {
     background: #fff;
-    border-radius: 5px;
     height: 57px;
     padding: 6px 15px;
     color: #666;
     font-size: 16px;
 
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
     &:last-child {
       text-align: right;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
 
     div {
@@ -169,5 +175,29 @@ export const DetailsBoard = styled.div`
       background: #fff;
       max-height: 100px;
     }
+  }
+`;
+
+export const DivButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  #left {
+    display: ${(props) => (props.page <= 1 ? 'none' : 'flex')};
+  }
+
+  #right {
+    display: ${(props) => (props.orders < 10 ? 'none' : 'flex')};
+  }
+
+  span {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;

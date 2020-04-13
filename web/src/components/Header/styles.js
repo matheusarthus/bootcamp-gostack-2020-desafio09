@@ -48,6 +48,8 @@ export const Content = styled.div`
     justify-content: flex-end;
     flex-direction: column;
     align-items: center;
+    max-height: 63px;
+    padding: 2px;
 
     h1 {
       font-size: 14px;

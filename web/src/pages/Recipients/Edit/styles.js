@@ -7,6 +7,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
+  h1 {
+    margin-top: 100px;
+    align-self: center;
+    color: #f5f5f5;
+  }
+  h2 {
+    margin-top: 100px;
+    align-self: center;
+    color: #f5f5f5;
+    font-size: 32px;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
