@@ -23,7 +23,7 @@ export const MoreOptions = styled.div`
   white-space: nowrap;
   margin-top: 5px;
   top: 20px;
-  left: calc(50% - 75px);
+  left: calc(50% - 115px);
   border: 0.5px solid rgba(4, 4, 4);
 
   display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
@@ -32,7 +32,7 @@ export const MoreOptions = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: calc(50% - 4px);
+    left: calc(100% - 38px);
     top: -8px;
     width: 0;
     height: 0;
@@ -77,7 +77,7 @@ export const MoreOptionsProblems = styled.div`
   white-space: nowrap;
   margin-top: 5px;
   top: 20px;
-  left: calc(50% - 100px);
+  left: calc(50% - 165px);
   border: 0.5px solid rgba(4, 4, 4);
 
   display: ${(props) => (props.visible ? 'flex' : 'none')} !important;
@@ -86,7 +86,7 @@ export const MoreOptionsProblems = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: calc(50% - 4px);
+    left: calc(100% - 38px);
     top: -8px;
     width: 0;
     height: 0;
