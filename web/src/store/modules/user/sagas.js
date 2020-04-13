@@ -53,11 +53,12 @@ export function* deleteOrder({ payload }) {
 
 export function* refreshDeliverymen({ payload }) {
   try {
-    const { search } = payload;
+    const { search, page } = payload;
 
     const response = yield call(api.get, '/deliverymen', {
       params: {
         deliveryman: search,
+        page,
       },
     });
 

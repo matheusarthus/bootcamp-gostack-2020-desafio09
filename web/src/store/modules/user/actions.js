@@ -36,10 +36,10 @@ export function removeOneOrder() {
 
 // DELIVERYMEN ---------------------------------------------------
 
-export function refreshDeliverymenRequest(search) {
+export function refreshDeliverymenRequest(search, page) {
   return {
     type: '@auth/REFRESH_DELIVERYMEN_REQUEST',
-    payload: { search },
+    payload: { search, page },
   };
 }
 
