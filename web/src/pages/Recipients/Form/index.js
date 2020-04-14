@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { MdCheck, MdChevronLeft } from 'react-icons/md';
+import MaskedInput from 'react-text-mask';
 
 import { toast } from 'react-toastify';
 
@@ -17,6 +17,8 @@ export default function RecipientsForm() {
   const [recipientCity, setRecipientCity] = useState('');
   const [recipientCountry, setRecipientCountry] = useState('');
   const [recipientZipcode, setRecipientZipcode] = useState('');
+
+  console.tron.log(recipientZipcode);
 
   async function updateRecipient() {
     try {
@@ -155,15 +157,25 @@ export default function RecipientsForm() {
           </div>
           <div id="zipcode">
             <span>CEP</span>
-            <input
-              type="text"
+            <MaskedInput
+              mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
               placeholder=""
-              value={recipientZipcode}
-              onChange={(e) => [setRecipientZipcode(e.target.value)]}
+              onChange={(e) => [
+                setRecipientZipcode(e.target.value.replace('-', '')),
+              ]}
             />
           </div>
         </div>
       </FormRecipientEdit>
     </Container>
   );
+}
+
+{
+  /* <MaskedInput
+              mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
+              placeholder=""
+              value={recipientZipcode}
+              onChange={(e) => [setRecipientZipcode(e.target.value)]}
+            /> */
 }
