@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   MdMoreHoriz,
@@ -231,3 +232,27 @@ export function ActionMenuProblems({ problem }) {
     </Container>
   );
 }
+
+ActionMenuOrders.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
+
+ActionMenuDeliverymen.propTypes = {
+  deliverymen: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
+
+ActionMenuRecipients.propTypes = {
+  recipients: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
+
+ActionMenuProblems.propTypes = {
+  problem: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};

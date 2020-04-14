@@ -170,12 +170,3 @@ export default function RecipientsForm() {
     </Container>
   );
 }
-
-{
-  /* <MaskedInput
-              mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
-              placeholder=""
-              value={recipientZipcode}
-              onChange={(e) => [setRecipientZipcode(e.target.value)]}
-            /> */
-}

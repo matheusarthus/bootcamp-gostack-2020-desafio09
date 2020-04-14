@@ -26,6 +26,7 @@ export default function OrdersEdit() {
     const response = await api.get('/recipients', {
       params: {
         recipient: '',
+        noLimit: 'true',
       },
     });
 
@@ -43,6 +44,7 @@ export default function OrdersEdit() {
     const response = await api.get('/deliverymen', {
       params: {
         deliveryman: '',
+        noLimit: 'true',
       },
     });
 
