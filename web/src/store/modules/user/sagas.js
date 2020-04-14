@@ -6,7 +6,6 @@ import api from '~/services/api';
 import {
   refreshOrdersRequest,
   refreshOrdersSuccess,
-  refreshDeliverymenRequest,
   refreshDeliverymenSuccess,
   refreshRecipientsRequest,
   refreshRecipientsSuccess,
@@ -18,12 +17,15 @@ import {
 
 export function* refreshOrders({ payload }) {
   try {
-    const { search, page } = payload;
+    const { search, page, problem } = payload;
+
+    console.tron.log(problem);
 
     const response = yield call(api.get, '/orders', {
       params: {
         product_name: search,
         page,
+        problem: problem == true ? true : null,
       },
     });
 

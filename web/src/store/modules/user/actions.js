@@ -1,9 +1,9 @@
 // ORDERS -------------------------------------------------------
 
-export function refreshOrdersRequest(search, page) {
+export function refreshOrdersRequest(search, page, problem) {
   return {
     type: '@auth/REFRESH_ORDERS_REQUEST',
-    payload: { search, page },
+    payload: { search, page, problem },
   };
 }
 

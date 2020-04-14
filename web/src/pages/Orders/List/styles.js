@@ -29,24 +29,44 @@ export const SubHeader = styled.div`
   align-items: baseline;
   margin-top: 30px;
 
-  form {
+  div {
     display: flex;
-    align-items: center;
-    width: 237px;
-    height: 36px;
-    background: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #dddddd;
 
-    input {
-      margin-left: 10px;
-      width: 100%;
-      border: none;
+    form {
+      display: flex;
+      align-items: center;
+      width: 237px;
+      height: 36px;
+      background: #fff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid #dddddd;
 
-      &::placeholder {
-        font-size: 14px;
-        color: #999999;
+      input {
+        margin-left: 10px;
+        width: 100%;
+        border: none;
+
+        &::placeholder {
+          font-size: 14px;
+          color: #999999;
+        }
+      }
+
+      & + form {
+        margin-left: 10px;
+        width: 290px;
+
+        input {
+          margin-left: 0;
+          margin-right: 5px;
+          width: 10%;
+        }
+
+        span {
+          font-size: 14px;
+          color: #999999;
+        }
       }
     }
   }

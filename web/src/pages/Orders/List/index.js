@@ -28,6 +28,7 @@ import {
 
 export default function OrdersList() {
   const [search, setSearch] = useState(['']);
+  const [problem, setProblem] = useState(false);
   const [page, setPage] = useState(1);
 
   const orders = useSelector((state) => state.user.orders);
@@ -36,8 +37,8 @@ export default function OrdersList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshOrdersRequest(search, page));
-  }, [dispatch, search, page]);
+    dispatch(refreshOrdersRequest(search, page, problem));
+  }, [dispatch, search, page, problem]);
 
   function toggleVisibleFadeBoard() {
     dispatch(removeOneOrder());
@@ -54,15 +55,25 @@ export default function OrdersList() {
         <header>
           <strong>Gerenciando encomendas</strong>
           <SubHeader>
-            <form>
-              <MdSearch size={20} color="#999999" />
-              <input
-                type="text"
-                placeholder="Buscar por encomendas"
-                value={search}
-                onChange={(e) => [setSearch(e.target.value)]}
-              />
-            </form>
+            <div>
+              <form>
+                <MdSearch size={20} color="#999999" />
+                <input
+                  type="text"
+                  placeholder="Buscar por encomendas"
+                  value={search}
+                  onChange={(e) => [setSearch(e.target.value)]}
+                />
+              </form>
+              <form>
+                <input
+                  type="checkbox"
+                  value={problem}
+                  onChange={() => [setProblem(!problem)]}
+                />
+                <span>Somente encomendas com problema</span>
+              </form>
+            </div>
             <button
               type="button"
               onClick={() => {
